@@ -1,0 +1,22 @@
+# Example MDP config — fill this in (or write your own) once you reach Level 3.
+#
+# A reasonable shape (you may diverge — your registry / builder is your design):
+#
+# observations:
+#   - { name: sin_cos_joint_pos }
+#   - { name: joint_vel,       delay: 0,   noise_std: 0.0 }   # delay/noise unlocked at Level 5
+#   - { name: ee_minus_goal,   delay: 0,   noise_std: 0.0 }
+#
+# rewards:
+#   - { name: tracking,         weight: 1.0 }
+#   - { name: smoothness,       weight: 0.001 }
+#   - { name: control_effort,   weight: 0.001 }
+#   - { name: success_bonus,    weight: 50.0, params: { threshold: 0.05 } }
+#
+# terminations:
+#   mode: any
+#   terms:
+#     - { name: ee_close_to_goal, params: { threshold: 0.05 } }
+#     - { name: timeout,          params: { max_steps: 200 } }
+#
+# seed: 0

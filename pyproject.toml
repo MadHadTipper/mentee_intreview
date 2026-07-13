@@ -1,0 +1,53 @@
+[project]
+name = "ai-dummy-sim"
+version = "0.1.0"
+description = "Two deliberately divergent batched dummy sims (Isaac-Lab-ish & MuJoCo-ish) for an AI engineer interview exercise."
+requires-python = ">=3.10,<3.13"
+readme = "README.md"
+
+dependencies = [
+    "numpy>=1.26",
+    "torch>=2.2",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+rl = [
+    "stable-baselines3>=2.3",
+    "gymnasium>=0.29",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["dummy_isaaclab", "dummy_mujoco", "solution"]
+
+[tool.uv]
+# Use PyTorch's CPU-only wheels on every platform so candidate laptops don't pull
+# multi-GB CUDA wheels by accident. Apple Silicon falls back to the standard PyPI
+# wheel (which is already CPU-only) since the pytorch-cpu index doesn't ship arm64
+# macOS wheels.
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", marker = "sys_platform != 'darwin'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: tests that take more than a few seconds (e.g., short PPO training)",
+]
+testpaths = ["tests", "verify", "_solution/tests", "_solution/grader"]
+# Pick up `verify/level_*.py`, `tests/test_*.py`, `_solution/grader/grade_*.py` alike.
+python_files = ["test_*.py", "level_*.py", "grade_*.py"]
