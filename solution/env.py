@@ -15,6 +15,7 @@ from pydantic.dataclasses import dataclass as pydantic_dataclass
 
 from dummy_isaaclab import IsaacLabEnv
 from dummy_mujoco import MuJoCoSim
+from solution.constants import ACT_DIM
 
 _NP_CONFIG = ConfigDict(arbitrary_types_allowed=True)
 
@@ -66,7 +67,7 @@ class SimAdapter(ABC):
 
     num_envs: int
     obs_dim: int = 6
-    act_dim: int = 2
+    act_dim: int = ACT_DIM
 
     @abstractmethod
     def reset(self) -> UnifiedState:
