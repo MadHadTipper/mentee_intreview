@@ -83,8 +83,7 @@ ai_dummy_sim/
 
 ## Supported platforms
 
-Tested on Linux (Ubuntu 22.04), macOS 14 (Apple Silicon + Intel), Windows 11.
-Python 3.10–3.12. CPU-only — no GPU required.
+Tested on Mac
 
 ## Troubleshooting
 
