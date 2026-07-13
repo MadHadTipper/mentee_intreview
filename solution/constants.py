@@ -1,0 +1,21 @@
+"""Shared numeric constants used across solution/ levels."""
+from dummy_isaaclab.env import MAX_STEPS, SUCCESS_THRESHOLD
+
+ACT_DIM = 2
+OBS_DIM_L2 = 8
+
+TRACKING_WEIGHT = 1.0
+SMOOTHNESS_WEIGHT = 0.001
+CONTROL_EFFORT_WEIGHT = 0.001
+SUCCESS_BONUS_WEIGHT = 50.0
+
+__all__ = [
+    "MAX_STEPS",
+    "SUCCESS_THRESHOLD",
+    "ACT_DIM",
+    "OBS_DIM_L2",
+    "TRACKING_WEIGHT",
+    "SMOOTHNESS_WEIGHT",
+    "CONTROL_EFFORT_WEIGHT",
+    "SUCCESS_BONUS_WEIGHT",
+]
